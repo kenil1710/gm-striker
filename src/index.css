@@ -1,0 +1,489 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap');
+
+:root {
+  --bg-deep-green: #1a3d2b;
+  --bg-dark: #142e21;
+  --text-cream: #f0ede6;
+  --text-cream-muted: rgba(240, 237, 230, 0.6);
+  --accent-green: #2d9b5a;
+  --accent-green-light: #3db86e;
+  --accent-green-glow: rgba(45, 155, 90, 0.4);
+  --accent-green-subtle: rgba(45, 155, 90, 0.15);
+  --card-bg: rgba(20, 46, 33, 0.6);
+  --card-border: rgba(45, 155, 90, 0.25);
+  --font-serif: 'Playfair Display', 'Georgia', serif;
+  --font-mono: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+}
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--bg-deep-green);
+  color: var(--text-cream);
+  font-family: var(--font-serif);
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* ─── Neural Art Background Image ─── */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.08;
+  background-image: url('/bg-neural.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+/* ─── Grain/Noise Texture Overlay ─── */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.06;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
+}
+
+/* ─── Page Fade-in ─── */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.app-container {
+  animation: fadeIn 0.8s ease-out;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ─── Header ─── */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 32px;
+  position: relative;
+  z-index: 10;
+}
+
+.header-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.header-logo svg {
+  width: 40px;
+  height: 40px;
+  color: var(--text-cream);
+}
+
+.header-logo-img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  border-radius: 6px;
+}
+
+.header-logo-text {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  color: var(--text-cream-muted);
+}
+
+/* RainbowKit button overrides */
+.header [data-testid="rk-connect-button"],
+.header button {
+  font-family: var(--font-mono) !important;
+}
+
+/* ─── Main Content ─── */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px 60px;
+  gap: 48px;
+}
+
+/* ─── Hero Section ─── */
+.hero {
+  text-align: center;
+  animation: fadeIn 1s ease-out 0.2s both;
+}
+
+.hero-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 700;
+  color: var(--text-cream);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+
+.hero-title .accent {
+  color: var(--accent-green);
+}
+
+.hero-subtitle {
+  font-family: var(--font-serif);
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--text-cream-muted);
+  max-width: 480px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* ─── GM Button Area ─── */
+.gm-button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  animation: fadeIn 1s ease-out 0.4s both;
+}
+
+.gm-button {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 2px solid var(--accent-green);
+  background: linear-gradient(135deg, var(--accent-green), #24854c);
+  color: var(--text-cream);
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  box-shadow: 0 0 0 0 var(--accent-green-glow);
+  outline: none;
+}
+
+.gm-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 40px var(--accent-green-glow), 0 0 80px rgba(45, 155, 90, 0.15);
+}
+
+.gm-button:active {
+  transform: scale(0.97);
+}
+
+.gm-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* Pulsing glow while pending */
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 20px var(--accent-green-glow), 0 0 60px rgba(45, 155, 90, 0.15); }
+  50% { box-shadow: 0 0 40px var(--accent-green-glow), 0 0 100px rgba(45, 155, 90, 0.3); }
+}
+
+.gm-button.pending {
+  animation: pulseGlow 1.5s ease-in-out infinite;
+}
+
+/* Bounce on success */
+@keyframes bounceSuccess {
+  0% { transform: scale(1); }
+  20% { transform: scale(1.15); }
+  40% { transform: scale(0.92); }
+  60% { transform: scale(1.06); }
+  80% { transform: scale(0.98); }
+  100% { transform: scale(1); }
+}
+
+.gm-button.success {
+  animation: bounceSuccess 0.6s ease-out;
+  background: linear-gradient(135deg, #3db86e, var(--accent-green));
+}
+
+.gm-button.cooldown {
+  background: linear-gradient(135deg, #1e5c38, #1a4a2e);
+  border-color: rgba(45, 155, 90, 0.3);
+  opacity: 0.6;
+}
+
+/* ─── Cooldown Timer ─── */
+.cooldown-timer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.cooldown-label {
+  font-family: var(--font-serif);
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--text-cream-muted);
+}
+
+.cooldown-time {
+  font-family: var(--font-mono);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--accent-green);
+  letter-spacing: 0.08em;
+}
+
+/* TX link */
+.tx-link {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--accent-green);
+  text-decoration: none;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+  word-break: break-all;
+  max-width: 400px;
+  text-align: center;
+}
+
+.tx-link:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+/* ─── Stats Cards ─── */
+.stats-container {
+  display: flex;
+  gap: 24px;
+  animation: fadeIn 1s ease-out 0.6s both;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.stat-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 28px 36px;
+  min-width: 220px;
+  text-align: center;
+  backdrop-filter: blur(12px);
+  transition: all 0.3s ease;
+  box-shadow: 0 0 20px rgba(45, 155, 90, 0.05);
+}
+
+.stat-card:hover {
+  border-color: var(--accent-green);
+  box-shadow: 0 0 30px rgba(45, 155, 90, 0.15);
+  transform: translateY(-2px);
+}
+
+.stat-card-icon {
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+}
+
+.stat-card-label {
+  font-family: var(--font-serif);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-cream-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 12px;
+}
+
+.stat-card-value {
+  font-family: var(--font-mono);
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--text-cream);
+  line-height: 1;
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+}
+
+/* Odometer digit animation */
+@keyframes rollUp {
+  from { transform: translateY(100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.odometer-digit {
+  display: inline-block;
+  animation: rollUp 0.4s ease-out;
+}
+
+.stat-card-value.updating .odometer-digit {
+  animation: rollUp 0.4s ease-out;
+}
+
+/* ─── Footer ─── */
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 24px;
+  border-top: 1px solid rgba(45, 155, 90, 0.1);
+  animation: fadeIn 1s ease-out 0.8s both;
+}
+
+.footer-text {
+  font-family: var(--font-serif);
+  font-size: 0.85rem;
+  color: var(--text-cream-muted);
+  font-style: italic;
+}
+
+.footer svg {
+  width: 20px;
+  height: 20px;
+  color: var(--accent-green);
+  opacity: 0.6;
+}
+
+.footer-logo-img {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  border-radius: 3px;
+  opacity: 0.6;
+}
+
+/* ─── Toast ─── */
+@keyframes slideInDown {
+  from { transform: translateY(-100%) translateX(-50%); opacity: 0; }
+  to { transform: translateY(0) translateX(-50%); opacity: 1; }
+}
+
+@keyframes slideOutUp {
+  from { transform: translateY(0) translateX(-50%); opacity: 1; }
+  to { transform: translateY(-100%) translateX(-50%); opacity: 0; }
+}
+
+.toast {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 14px 24px;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--text-cream);
+  backdrop-filter: blur(16px);
+  z-index: 10000;
+  animation: slideInDown 0.4s ease-out;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.toast.hiding {
+  animation: slideOutUp 0.4s ease-in forwards;
+}
+
+.toast-icon {
+  margin-right: 8px;
+}
+
+/* ─── Wallet Not Connected State ─── */
+.connect-prompt {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--text-cream-muted);
+  text-align: center;
+}
+
+/* ─── Mobile Responsive ─── */
+@media (max-width: 768px) {
+  .header {
+    padding: 16px 20px;
+  }
+
+  .main-content {
+    padding: 24px 16px 40px;
+    gap: 36px;
+  }
+
+  .gm-button {
+    width: 160px;
+    height: 160px;
+    font-size: 1.25rem;
+  }
+
+  .stats-container {
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .stat-card {
+    min-width: unset;
+    padding: 20px 24px;
+  }
+
+  .stat-card-value {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .gm-button {
+    width: 140px;
+    height: 140px;
+    font-size: 1.1rem;
+  }
+}
+
+/* ─── RainbowKit Theme Overrides ─── */
+[data-rk] {
+  --rk-colors-accentColor: var(--accent-green) !important;
+  --rk-colors-accentColorForeground: var(--text-cream) !important;
+  --rk-radii-connectButton: 12px !important;
+}

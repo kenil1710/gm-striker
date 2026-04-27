@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="currentColor">
+  <!-- Ritual Celtic Knot Diamond Logo -->
+  <g transform="translate(50,50) rotate(45)">
+    <!-- Outer frame -->
+    <rect x="-35" y="-35" width="70" height="70" fill="none" stroke="currentColor" stroke-width="3"/>
+    <!-- Inner knot pattern -->
+    <g stroke="currentColor" stroke-width="3" fill="none">
+      <!-- Horizontal bars -->
+      <line x1="-25" y1="-12" x2="25" y2="-12"/>
+      <line x1="-25" y1="0" x2="25" y2="0"/>
+      <line x1="-25" y1="12" x2="25" y2="12"/>
+      <!-- Vertical bars -->
+      <line x1="-12" y1="-25" x2="-12" y2="25"/>
+      <line x1="0" y1="-25" x2="0" y2="25"/>
+      <line x1="12" y1="-25" x2="12" y2="25"/>
+      <!-- Corner knot loops -->
+      <path d="M-25,-25 Q-25,-12 -12,-12" />
+      <path d="M25,-25 Q25,-12 12,-12" />
+      <path d="M-25,25 Q-25,12 -12,12" />
+      <path d="M25,25 Q25,12 12,12" />
+      <!-- Center weave -->
+      <circle cx="0" cy="0" r="5"/>
+    </g>
+  </g>
+</svg>
