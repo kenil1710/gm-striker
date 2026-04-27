@@ -4,10 +4,10 @@ const Hero = () => {
   return (
     <section className="hero">
       <h1 className="hero-title">
-        <span className="accent">GM</span> Striker
+        <span className="accent">GRITUAL</span>
       </h1>
       <p className="hero-subtitle">
-        The next GMs won't be sent by humans alone.
+        The next GRITUALs won't be sent by humans alone.
       </p>
     </section>
   );

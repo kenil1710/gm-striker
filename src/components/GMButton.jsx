@@ -103,7 +103,7 @@ const GMButton = ({ isConnected, onSuccess }) => {
   if (!isConnected) {
     return (
       <div className="gm-button-container">
-        <p className="connect-prompt">Connect your wallet to send a GM ✨</p>
+        <p className="connect-prompt">Connect your wallet to send a GRITUAL ✨</p>
       </div>
     );
   }
@@ -120,10 +120,10 @@ const GMButton = ({ isConnected, onSuccess }) => {
           : isConfirming
           ? 'Sending…'
           : showSuccess
-          ? 'GM! 🌿'
+          ? 'GRITUAL! 🌿'
           : isOnCooldown
           ? '⏳'
-          : 'Send GM'}
+          : 'Send GRITUAL'}
       </button>
 
       {isOnCooldown && !isLoading && !showSuccess && (

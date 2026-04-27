@@ -74,7 +74,7 @@ const StatsCards = ({ refreshTrigger }) => {
     <div className="stats-container">
       <div className="stat-card">
         <div className="stat-card-icon">🟢</div>
-        <div className="stat-card-label">Your GMs</div>
+        <div className="stat-card-label">Your GRITUALs Sent</div>
         <OdometerValue
           value={isConnected ? formatNumber(userGMs) : '—'}
         />
@@ -82,7 +82,7 @@ const StatsCards = ({ refreshTrigger }) => {
 
       <div className="stat-card">
         <div className="stat-card-icon">🌍</div>
-        <div className="stat-card-label">Global GMs on Ritual</div>
+        <div className="stat-card-label">Global GRITUALs on Ritual</div>
         <OdometerValue value={formatNumber(totalGMs)} />
       </div>
     </div>
