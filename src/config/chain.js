@@ -3,8 +3,8 @@ export const ritualChain = {
   name: 'Ritual Chain',
   network: 'ritual',
   nativeCurrency: {
-    name: 'RITUAL',
-    symbol: 'RITUAL',
+    name: 'CRAT',
+    symbol: 'CRAT',
     decimals: 18,
   },
   rpcUrls: {
