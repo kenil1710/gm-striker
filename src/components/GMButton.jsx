@@ -128,7 +128,7 @@ const GMButton = ({ isConnected, onSuccess }) => {
 
       {isOnCooldown && !isLoading && !showSuccess && (
         <div className="cooldown-timer">
-          <span className="cooldown-label">Next GM available in</span>
+          <span className="cooldown-label">Next GRITUAL available in</span>
           <span className="cooldown-time">{countdownStr}</span>
         </div>
       )}
